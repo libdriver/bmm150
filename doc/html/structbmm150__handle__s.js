@@ -1,0 +1,28 @@
+var structbmm150__handle__s =
+[
+    [ "debug_print", "structbmm150__handle__s.html#a769d5b3a6c14790a0e126e8fe70b384b", null ],
+    [ "delay_ms", "structbmm150__handle__s.html#a406c9433252b7366de417b7a60915c81", null ],
+    [ "dig_x1", "structbmm150__handle__s.html#a10b272466af384eb4351e8f18df8d24a", null ],
+    [ "dig_x2", "structbmm150__handle__s.html#aca0c5edba90aae946adc0a3256696809", null ],
+    [ "dig_xy1", "structbmm150__handle__s.html#a9f4931a3946d483e8495233617b7eefa", null ],
+    [ "dig_xy2", "structbmm150__handle__s.html#a489d144a78bd5587b138cfae14831973", null ],
+    [ "dig_xyz1", "structbmm150__handle__s.html#a6385da682380e972f2ca202ea00a1dcd", null ],
+    [ "dig_y1", "structbmm150__handle__s.html#ac2d6571e78a7d04178ac45da3411faec", null ],
+    [ "dig_y2", "structbmm150__handle__s.html#a628ac583f3c60f48e000b4ef89cd8460", null ],
+    [ "dig_z1", "structbmm150__handle__s.html#a5e72458e3cdd7e8896741cceb492bd84", null ],
+    [ "dig_z2", "structbmm150__handle__s.html#a354b3be8c437ff31173db0d0821044cc", null ],
+    [ "dig_z3", "structbmm150__handle__s.html#a7579efbfae589e3e382066dbae5341a8", null ],
+    [ "dig_z4", "structbmm150__handle__s.html#a9af9aa83c9b8018e5f08e11a0b857454", null ],
+    [ "iic_addr", "structbmm150__handle__s.html#ae4fb63dc1b166464d5da3aa753b0805a", null ],
+    [ "iic_deinit", "structbmm150__handle__s.html#af6963bbad902ca6e43942b48c07986c3", null ],
+    [ "iic_init", "structbmm150__handle__s.html#a8826dd07625f8d90859ce9bd09628d61", null ],
+    [ "iic_read", "structbmm150__handle__s.html#af4ef726288b88f51a846483803a1249b", null ],
+    [ "iic_spi", "structbmm150__handle__s.html#a00209e629162307269baa592e51144ac", null ],
+    [ "iic_write", "structbmm150__handle__s.html#adca3ee7a793bbf510d5267daf0fcf1c5", null ],
+    [ "inited", "structbmm150__handle__s.html#a19bedf28d2b9748f6a62d9ae93f4e68f", null ],
+    [ "receive_callback", "structbmm150__handle__s.html#a4a9a1af4e28aea769f6d9f02a02e07c3", null ],
+    [ "spi_deinit", "structbmm150__handle__s.html#a9adb2481330acacfd7f6a04ce3310fab", null ],
+    [ "spi_init", "structbmm150__handle__s.html#a30df505f4bd8bc8754fc0a36cfbe46d6", null ],
+    [ "spi_read", "structbmm150__handle__s.html#a4355763dd3841598f34aea0b059031ce", null ],
+    [ "spi_write", "structbmm150__handle__s.html#a53f6c43b3a975d2569e84643ad549413", null ]
+];
