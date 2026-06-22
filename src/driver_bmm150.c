@@ -653,6 +653,8 @@ uint8_t bmm150_soft_reset(bmm150_handle_t *handle)
     }
     prev &= ~(1 << 1);                                                          /* clear settings */
     prev |= 1 << 1;                                                             /* set bool */
+    prev &= ~(1 << 7);                                                          /* clear settings */
+    prev |= 1 << 7;                                                             /* set bool */
     res = a_bmm150_iic_spi_write(handle, BMM150_REG_CONFIG_0, &prev, 1);        /* write config */
     if (res != 0)                                                               /* check the result */
     {
