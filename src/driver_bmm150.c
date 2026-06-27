@@ -2654,6 +2654,8 @@ uint8_t bmm150_init(bmm150_handle_t *handle)
     }
     prev &= ~(1 << 1);                                                                    /* clear settings */
     prev |= 1 << 1;                                                                       /* set bool */
+    prev &= ~(1 << 7);                                                                    /* clear settings */
+    prev |= 1 << 7;                                                                       /* set bool */
     if (a_bmm150_iic_spi_write(handle, BMM150_REG_CONFIG_0, &prev, 1) != 0)               /* soft reset */
     {
         handle->debug_print("bmm150: write config 0 failed.\n");                          /* write config 0 failed */
