@@ -232,15 +232,22 @@ static float a_bmm150_compensate_x(bmm150_handle_t *handle, int16_t mag_data_x, 
     float process_comp_x3;
     float process_comp_x4;
     
-    process_comp_x0 = (((float)handle->dig_xyz1) * 16384.0f / (float)data_rhall);                /* calculate process comp x0 */
-    retval = (process_comp_x0 - 16384.0f);                                                       /* calculate retval */
-    process_comp_x1 = ((float)handle->dig_xy2) * (retval * retval / 268435456.0f);               /* calculate process comp x1 */
-    process_comp_x2 = process_comp_x1 + retval * ((float)handle->dig_xy1) / 16384.0f;            /* calculate process comp x2 */
-    process_comp_x3 = ((float)handle->dig_x2) + 160.0f;                                          /* calculate process comp x3 */
-    process_comp_x4 = (float)mag_data_x * ((process_comp_x2 + 256.0f) * process_comp_x3);        /* calculate process comp x4 */
-    retval = ((process_comp_x4 / 8192.0f) + (((float)handle->dig_x1) * 8.0f)) / 16.0f;           /* calculate the final result */
+    if ((mag_data_x != -4096) && (data_rhall != 0) && (handle->dig_xyz1 != 0))                       /* check value */
+    {
+        process_comp_x0 = (((float)handle->dig_xyz1) * 16384.0f / (float)data_rhall);                /* calculate process comp x0 */
+        retval = (process_comp_x0 - 16384.0f);                                                       /* calculate retval */
+        process_comp_x1 = ((float)handle->dig_xy2) * (retval * retval / 268435456.0f);               /* calculate process comp x1 */
+        process_comp_x2 = process_comp_x1 + retval * ((float)handle->dig_xy1) / 16384.0f;            /* calculate process comp x2 */
+        process_comp_x3 = ((float)handle->dig_x2) + 160.0f;                                          /* calculate process comp x3 */
+        process_comp_x4 = (float)mag_data_x * ((process_comp_x2 + 256.0f) * process_comp_x3);        /* calculate process comp x4 */
+        retval = ((process_comp_x4 / 8192.0f) + (((float)handle->dig_x1) * 8.0f)) / 16.0f;           /* calculate the final result */
+    }
+    else
+    {
+        retval = 0.0f;                                                                               /* set 0.0f */
+    }
     
-    return retval;                                                                               /* return the final result */
+    return retval;                                                                                   /* return the final result */
 }
 
 /**
@@ -260,15 +267,22 @@ static float a_bmm150_compensate_y(bmm150_handle_t *handle, int16_t mag_data_y, 
     float process_comp_y3;
     float process_comp_y4;
     
-    process_comp_y0 = ((float)handle->dig_xyz1) * 16384.0f / (float)data_rhall;                    /* calculate process comp y0 */
-    retval = process_comp_y0 - 16384.0f;                                                           /* calculate retval */
-    process_comp_y1 = ((float)handle->dig_xy2) * (retval * retval / 268435456.0f);                 /* calculate process comp y1 */
-    process_comp_y2 = process_comp_y1 + retval * ((float)handle->dig_xy1) / 16384.0f;              /* calculate process comp y2 */
-    process_comp_y3 = ((float)handle->dig_y2) + 160.0f;                                            /* calculate process comp y3 */
-    process_comp_y4 = (float)mag_data_y * (((process_comp_y2) + 256.0f) * process_comp_y3);        /* calculate process comp y4 */
-    retval = ((process_comp_y4 / 8192.0f) + (((float)handle->dig_y1) * 8.0f)) / 16.0f;             /* calculate the final result */
+    if ((mag_data_y != -4096) && (data_rhall != 0) && (handle->dig_xyz1 != 0))                         /* check value */
+    {
+        process_comp_y0 = ((float)handle->dig_xyz1) * 16384.0f / (float)data_rhall;                    /* calculate process comp y0 */
+        retval = process_comp_y0 - 16384.0f;                                                           /* calculate retval */
+        process_comp_y1 = ((float)handle->dig_xy2) * (retval * retval / 268435456.0f);                 /* calculate process comp y1 */
+        process_comp_y2 = process_comp_y1 + retval * ((float)handle->dig_xy1) / 16384.0f;              /* calculate process comp y2 */
+        process_comp_y3 = ((float)handle->dig_y2) + 160.0f;                                            /* calculate process comp y3 */
+        process_comp_y4 = (float)mag_data_y * (((process_comp_y2) + 256.0f) * process_comp_y3);        /* calculate process comp y4 */
+        retval = ((process_comp_y4 / 8192.0f) + (((float)handle->dig_y1) * 8.0f)) / 16.0f;             /* calculate the final result */
+    }
+    else
+    {
+        retval = 0.0f;                                                                                 /* set 0.0f */
+    }
     
-    return retval;                                                                                 /* return the final result */
+    return retval;                                                                                     /* return the final result */
 }
 
 /**
@@ -289,15 +303,22 @@ static float a_bmm150_compensate_z(bmm150_handle_t *handle, int16_t mag_data_z, 
     float process_comp_z4;
     float process_comp_z5;
     
-    process_comp_z0 = ((float)mag_data_z) - ((float)handle->dig_z4);                   /* calculate process comp z0 */
-    process_comp_z1 = ((float)data_rhall) - ((float)handle->dig_xyz1);                 /* calculate process comp z1 */
-    process_comp_z2 = (((float)handle->dig_z3) * process_comp_z1);                     /* calculate process comp z2 */
-    process_comp_z3 = ((float)handle->dig_z1) * ((float)data_rhall) / 32768.0f;        /* calculate process comp z3 */
-    process_comp_z4 = ((float)handle->dig_z2) + process_comp_z3;                       /* calculate process comp z4 */
-    process_comp_z5 = (process_comp_z0 * 131072.0f) - process_comp_z2;                 /* calculate process comp z5 */
-    retval = (process_comp_z5 / ((process_comp_z4) * 4.0f)) / 16.0f;                   /* calculate the final result */
+    if ((mag_data_z != -16384) && (data_rhall != 0) && (handle->dig_xyz1 != 0))            /* check value */
+    {
+        process_comp_z0 = ((float)mag_data_z) - ((float)handle->dig_z4);                   /* calculate process comp z0 */
+        process_comp_z1 = ((float)data_rhall) - ((float)handle->dig_xyz1);                 /* calculate process comp z1 */
+        process_comp_z2 = (((float)handle->dig_z3) * process_comp_z1);                     /* calculate process comp z2 */
+        process_comp_z3 = ((float)handle->dig_z1) * ((float)data_rhall) / 32768.0f;        /* calculate process comp z3 */
+        process_comp_z4 = ((float)handle->dig_z2) + process_comp_z3;                       /* calculate process comp z4 */
+        process_comp_z5 = (process_comp_z0 * 131072.0f) - process_comp_z2;                 /* calculate process comp z5 */
+        retval = (process_comp_z5 / ((process_comp_z4) * 4.0f)) / 16.0f;                   /* calculate the final result */
+    }
+    else
+    {
+        retval = 0.0f;                                                                     /* set 0.0f */
+    }
     
-    return retval;                                                                     /* return the final result */
+    return retval;                                                                         /* return the final result */
 }
 
 /**
@@ -2075,7 +2096,7 @@ uint8_t bmm150_get_high_threshold(bmm150_handle_t *handle, int8_t *threshold)
  *            low power preset           3        3       10
  *            regular preset             9        15      10
  *            enhanced regular preset    15       27      10
- *            high accuracy preset       47       83      10
+ *            high accuracy preset       47       83      20
  */
 uint8_t bmm150_set_repxy_number(bmm150_handle_t *handle, uint8_t number)
 {
@@ -2151,7 +2172,7 @@ uint8_t bmm150_get_repxy_number(bmm150_handle_t *handle, uint8_t *number)
  *            low power preset           3        3       10
  *            regular preset             9        15      10
  *            enhanced regular preset    15       27      10
- *            high accuracy preset       47       83      10
+ *            high accuracy preset       47       83      20
  */
 uint8_t bmm150_set_repz_number(bmm150_handle_t *handle, uint8_t number)
 {

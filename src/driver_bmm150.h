@@ -972,7 +972,7 @@ uint8_t bmm150_get_high_threshold(bmm150_handle_t *handle, int8_t *threshold);
  *            low power preset           3        3       10
  *            regular preset             9        15      10
  *            enhanced regular preset    15       27      10
- *            high accuracy preset       47       83      10
+ *            high accuracy preset       47       83      20
  */
 uint8_t bmm150_set_repxy_number(bmm150_handle_t *handle, uint8_t number);
 
@@ -1002,7 +1002,7 @@ uint8_t bmm150_get_repxy_number(bmm150_handle_t *handle, uint8_t *number);
  *            low power preset           3        3       10
  *            regular preset             9        15      10
  *            enhanced regular preset    15       27      10
- *            high accuracy preset       47       83      10
+ *            high accuracy preset       47       83      20
  */
 uint8_t bmm150_set_repz_number(bmm150_handle_t *handle, uint8_t number);
 
